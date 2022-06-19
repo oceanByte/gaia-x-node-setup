@@ -1,44 +1,26 @@
 [parity]
-# base_path = "/parity_data/base"l
-# keys_path = "/parity_data/base/keys"
-# db_path = "/parity_data/base/chains"
 chain = "./chain.spec"
-no_persistent_txqueue = true
-[rpc]
-disable = false
-port = 8545
-interface = "all"
-cors = ["all"]
-hosts = ["all"]
-apis = ["all"]
-[secretstore]
-disable = true
+
 [network]
-# nat = "extip:YOUR_IP_HERE"
-port = 30303
-# node_key = "PRIVATE_KEY_HERE"
-discovery = false
-[ipc]
-disable = true
+warp = false
+
+[rpc]
+apis = ["web3","eth","net","parity","traces"]
+processing_threads = 8
+server_threads = 16
+interface = "0.0.0.0"
+cors=["all"]
+
 [websockets]
-disable = false
 port = 8546
-interface = "all"
+interface = "0.0.0.0"
+max_connections = 1000
+apis = ["web3","eth","net","parity","pubsub","traces"]
 origins = ["all"]
-apis = ["all"]
 hosts = ["all"]
+
 [footprint]
 tracing = "on"
 pruning = "archive"
 fat_db = "on"
-[mining]
-# engine_signer ="YOUR ADDRESS HERE"
-force_sealing = true
-reseal_on_txs = "none" # Authorities reseal automatically. From https://bit.ly/2Jiw5SV
-gas_floor_target = "6666666"
-min_gas_price = 0 #min gas price in WEI per GAS unit (0 Ether)
-# usd_per_tx doesn't mean anything on PoA networks. See https://bit.ly/2VEOwI7
-[account]
-# password = ["./validator.pwd"]
-#[misc]
-#logging = "own_tx=warn,sync=debug"
+cache_size_db = 12000
